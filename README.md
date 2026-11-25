@@ -1,7 +1,7 @@
 # FMSI
 
 [![BioConda Install](https://img.shields.io/conda/dn/bioconda/fmsi.svg?style=flag&label=BioConda%20Install)](https://anaconda.org/bioconda/fmsi)
-[![FMSI test](https://github.com/OndrejSladky/fmsi/actions/workflows/ci.yml/badge.svg)](https://github.com/OndrejSladky/fmsi/actions/)
+[![FMSI test](https://github.com/masked-superstrings/fmsi/actions/workflows/ci.yml/badge.svg)](https://github.com/masked-superstrings/fmsi/actions/)
 
 <!-- vim-markdown-toc GFM -->
 
@@ -44,7 +44,7 @@ The memory consumption for FMSI are (w/o kLCP which is additional 1bit/superstri
 ![image](docs/fig1.svg)
 
 To construct an index (the `fmsi index` subcommand), FMSI accepts as input (see the `-p` parameter) a masked superstring of the $k$-mer set.
-The masked superstring can be computed by [KmerCamel🐫](https://github.com/OndrejSladky/kmercamel).
+The masked superstring can be computed by [KmerCamel🐫](https://github.com/masked-superstrings/kmercamel).
 It then stores the index file in files with the same prefix and the `.fmsi.[component]` extension.
 There are these components:
 - `.ac_gt`, `.ac` and `.gt` for storing the nodes of the wavelet tree of BWT
@@ -76,7 +76,7 @@ conda install bioconda::fmsi
 
 Alternatively, FMSI can be built directly from source:
 ```
-git clone --recursive https://github.com/OndrejSladky/fmsi
+git clone --recursive https://github.com/masked-superstrings/fmsi
 cd fmsi && make -j
 export PATH="$PATH:$(pwd)"
 ```
@@ -85,7 +85,7 @@ export PATH="$PATH:$(pwd)"
 
 ### k-mer membership queries (stable)
 
-1. Compute an optimized masked superstring for all k-mers from a given FASTA file by [KmerCamel🐫](https://github.com/OndrejSladky/kmercamel).
+1. Compute an optimized masked superstring for all k-mers from a given FASTA file by [KmerCamel🐫](https://github.com/masked-superstrings/kmercamel).
    ```
    kmercamel compute -k 31 -o /dev/null -M ms.fa yourfile.fa
    ```
@@ -116,7 +116,7 @@ We, however, recommend to optimize the mask using `kmercamel optimize`.
 
 ### k-mer lookup queries (stable)
 
-1. Compute a default masked superstring for all k-mers from a given FASTA file by [KmerCamel🐫](https://github.com/OndrejSladky/kmercamel).
+1. Compute a default masked superstring for all k-mers from a given FASTA file by [KmerCamel🐫](https://github.com/masked-superstrings/kmercamel).
    ```
    kmercamel compute -k 31 -o ms.fa yourfile.fa
    ```
@@ -148,7 +148,7 @@ can manage the details for you.
 This can be done in a few simple steps:
 
 1. **Compute a masked superstring.**
-   - This can be done by [KmerCamel🐫](https://github.com/OndrejSladky/kmercamel); simply run `kmercamel -c -k 31 -p fasta.fa -o ms.fa` (with appropriate values for `-k` and `-p`).
+   - This can be done by [KmerCamel🐫](https://github.com/masked-superstrings/kmercamel); simply run `kmercamel -c -k 31 -p fasta.fa -o ms.fa` (with appropriate values for `-k` and `-p`).
    - If you obtained the masked superstring in a different way, make sure it minimizes the number of ones; if you're unsure, you can use `kmercamel optimize -c -a zeros -k 31 -p ms_more_ones.fa -o ms.fa`. No need to optimize superstrings directly computed by KmerCamel🐫.
 2. **Index the masked superstring** with `fmsi index ms.fa`.
 3. **Perform the set operations** you wish with `fmsi [operation] -k 31 -p ms1.fa -p ms2.fa -r ms.fa`. Possible operations (use the names instead of `[operation]`) are:
@@ -223,16 +223,16 @@ To run the associated tests, simply run `make test`.
 
 ## Issues
 
-Please use [GitHub issues](https://github.com/OndrejSladky/fmsi/issues).
+Please use [GitHub issues](https://github.com/masked-superstrings/fmsi/issues).
 
 ## Changelog
 
-See [Releases](https://github.com/OndrejSladky/fmsi/releases).
+See [Releases](https://github.com/masked-superstrings/fmsi/releases).
 
 
 ## Licence
 
-[MIT](https://github.com/OndrejSladky/fmsi/blob/master/LICENSE.txt)
+[MIT](https://github.com/masked-superstrings/fmsi/blob/main/LICENSE)
 
 ## Citation
 
